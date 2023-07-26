@@ -40,10 +40,10 @@ export default function AuthModal() {
               className="d-flex flex-column align-items-center"
               onSubmit={handleSubmit(onLoginSubmit)}
             >
-              <S.FormLabel className="mb-1" htmlFor="email">
+              <S.AuthFormLabel className="mb-1" htmlFor="email">
                 Email
-              </S.FormLabel>
-              <S.FormInput
+              </S.AuthFormLabel>
+              <S.AuthFormInput
                 className="mb-2"
                 type="email"
                 placeholder="Your email address"
@@ -52,10 +52,10 @@ export default function AuthModal() {
                 // pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
                 title="The email value must be a valid email"
               />
-              <S.FormLabel className="mb-1" htmlFor="">
+              <S.AuthFormLabel className="mb-1" htmlFor="password">
                 Password
-              </S.FormLabel>
-              <S.FormInput
+              </S.AuthFormLabel>
+              <S.AuthFormInput
                 className="mb-2"
                 type="password"
                 placeholder="Your password"
@@ -73,10 +73,10 @@ export default function AuthModal() {
               className="d-flex flex-column align-items-center"
               onSubmit={handleSubmit(onRegisterSubmit)}
             >
-              <S.FormLabel className="mb-1" htmlFor="email">
+              <S.AuthFormLabel className="mb-1" htmlFor="name">
                 Full name
-              </S.FormLabel>
-              <S.FormInput
+              </S.AuthFormLabel>
+              <S.AuthFormInput
                 className="mb-2"
                 type="text"
                 placeholder="Your full name"
@@ -85,10 +85,10 @@ export default function AuthModal() {
                 // pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
                 title="The email value must be a valid email"
               />
-              <S.FormLabel className="mb-1" htmlFor="email">
+              <S.AuthFormLabel className="mb-1" htmlFor="email">
                 Email
-              </S.FormLabel>
-              <S.FormInput
+              </S.AuthFormLabel>
+              <S.AuthFormInput
                 className="mb-2"
                 type="email"
                 placeholder="Your email"
@@ -97,10 +97,10 @@ export default function AuthModal() {
                 // pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
                 title="The email value must be a valid email"
               />
-              <S.FormLabel className="mb-1" htmlFor="">
+              <S.AuthFormLabel className="mb-1" htmlFor="password">
                 Password
-              </S.FormLabel>
-              <S.FormInput
+              </S.AuthFormLabel>
+              <S.AuthFormInput
                 className="mb-2"
                 type="password"
                 placeholder="Your password"
