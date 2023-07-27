@@ -4,10 +4,10 @@ import Tab from "react-bootstrap/Tab";
 import { FormInput, FormLabel } from "../commonStyles/inputs";
 
 export const AuthFormLabel = styled(FormLabel)`
-  width: 80%;
+  width: 80% !important;
 `;
 export const AuthFormInput = styled(FormInput)`
-  width: 80%;
+  width: 80% !important;
 `;
 
 export const AuthTabs = styled(Tabs)`
