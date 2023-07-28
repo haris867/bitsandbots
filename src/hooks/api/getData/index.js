@@ -1,20 +1,26 @@
 import { useState, useEffect } from "react";
+import { load, save } from "../../storage";
 
-export default function useGetData(url, options = {}) {
+export default function useGetData(url) {
   const [data, setData] = useState([]);
   const [isFetchLoading, setIsFetchLoading] = useState(false);
   const [isFetchError, setIsFetchError] = useState(false);
 
-  const stringifiedOptions = JSON.stringify(options);
-
   useEffect(() => {
     async function getData() {
       try {
-        setIsFetchLoading(true);
-        setIsFetchError(false);
-        const fetchedData = await fetch(url, JSON.parse(stringifiedOptions));
-        const json = await fetchedData.json();
-        setData(json.result);
+        const cachedData = load(url);
+        if (cachedData) {
+          setData(cachedData);
+        } else {
+          setIsFetchLoading(true);
+          setIsFetchError(false);
+          const fetchedData = await fetch(url);
+          const json = await fetchedData.json();
+          const result = json.result;
+          save(url, result);
+          setData(result);
+        }
       } catch (error) {
         setIsFetchError(true);
       } finally {
@@ -22,6 +28,6 @@ export default function useGetData(url, options = {}) {
       }
     }
     getData();
-  }, [url, stringifiedOptions]);
+  }, [url]);
   return { data, isFetchLoading, isFetchError };
 }
