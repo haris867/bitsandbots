@@ -14,7 +14,7 @@ export default function useGetData(url, options = {}) {
         setIsFetchError(false);
         const fetchedData = await fetch(url, JSON.parse(stringifiedOptions));
         const json = await fetchedData.json();
-        setData(json);
+        setData(json.result);
       } catch (error) {
         setIsFetchError(true);
       } finally {

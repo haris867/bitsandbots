@@ -10,7 +10,7 @@ export const PrimaryButton = styled.button`
   height: 38px;
   width: 100%;
   max-width: 180px;
-  font-size: calc(0.9em + 0.3vw);
+  font-size: calc(1rem + 0.1vw);
   font-family: "Play", sans-serif;
 `;
 

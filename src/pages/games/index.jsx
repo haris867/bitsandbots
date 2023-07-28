@@ -10,21 +10,23 @@ import { BsSearch } from "react-icons/bs";
 import { MainHeading } from "../../components/commonStyles/headings";
 import { GameCard } from "../../components/commonStyles/cards";
 import CardsContainer from "../../components/cardsContainer";
+import useGetData from "../../hooks/api/getData";
+import { LoadingSpinner } from "../../components/commonStyles/loadingSpinner";
+import GenreTabs from "../../components/genreTabs";
+import { SearchInput } from "../../components/commonStyles/inputs";
 
 const SearchIcon = styled(BsSearch)`
   font-size: calc(1.325rem + 0.9vw) !important;
   cursor: pointer;
 `;
-const SearchInput = styled.input`
-  flex: 1 0 100px;
-  max-width: 500px;
-  font-family: "Roboto Mono", sans-serif;
-  min-height: calc(2.5rem + 0.7vw) !important;
-  max-height: calc(2.5rem + 0.7vw) !important;
-`;
 
 export default function Games() {
+  const gamesUrl = `https://qg8g236v.api.sanity.io/v2021-10-21/data/query/production?query=%7B%0A++%22genres%22%3A+*%5B_type+%3D%3D+%22genres%22%5D%7B%0A++++%22genres%22%3A+genres%2C%0A++++%2F%2F+Add+any+other+fields+you+want+here%0A++%7D%2C%0A++%22products%22%3A+*%5B_type+%3D%3D+%22Products%22%5D%7B%0A++++%22name%22%3A+name%2C%0A++++%22price%22%3A+price%2C%0A++++%22rating%22%3A+rating%2C%0A++++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++++%22description%22%3A+description%2C%0A++++%22genres%22%3A+genres%2C%0A++++%22id%22%3A+_id%0A++%7D%0A%7D`;
+  const { data, isFetchLoading, isFetchError } = useGetData(gamesUrl);
+
   const [open, setOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [searchGenres, setSearchGenres] = useState([]);
 
   function genreClick(e) {
@@ -36,8 +38,43 @@ export default function Games() {
         searchGenres.filter((genre) => genre !== e.target.innerText)
       );
     }
-    console.log(searchGenres);
   }
+
+  if (isFetchLoading) {
+    return (
+      <div className="mt-3 d-flex justify-content-center">
+        <LoadingSpinner animation="border" size="lg" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </LoadingSpinner>
+      </div>
+    );
+  }
+
+  if (isFetchError) {
+    return (
+      <div className="mt-3 d-flex justify-content-center">An error occured</div>
+    );
+  }
+
+  var games = data.products;
+  if (data && data.genres) {
+    var genres = data.genres[0].genres;
+  }
+  if (games) {
+    var filteredGames = games.filter((game) =>
+      game.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
+
+  if (searchGenres.length > 0) {
+    filteredGames = filteredGames.filter((game) =>
+      game.genres.some((genre) => searchGenres.includes(genre))
+    );
+  }
+
+  console.log(genres);
+
+  console.log(filteredGames);
 
   return (
     <Container>
@@ -54,82 +91,24 @@ export default function Games() {
       </Col>
       <Row>
         <Collapse in={open}>
-          <Col id="search-form" md={11} className="p-0 mx-auto">
+          <Col id="search-form" md={10} className="p-0 mx-auto">
             <div className="d-flex justify-content-center">
               <SearchInput
                 className="m-2"
                 type="text"
                 placeholder="Search by title"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <div className="d-flex flex-wrap mx-auto">
-              <SecondaryButton
-                onClick={genreClick}
-                style={{ flex: "1 0 80px" }}
-                className="mx-2 mb-2"
-              >
-                ACTION
-              </SecondaryButton>
-              <SecondaryButton
-                onClick={genreClick}
-                style={{ flex: "1 0 80px" }}
-                className="mx-2 mb-2"
-              >
-                CASUAL
-              </SecondaryButton>
-              <SecondaryButton
-                onClick={genreClick}
-                style={{ flex: "1 0 80px" }}
-                className="mx-2 mb-2"
-              >
-                ADVENTURE
-              </SecondaryButton>
-              <SecondaryButton
-                onClick={genreClick}
-                style={{ flex: "1 0 80px" }}
-                className="mx-2 mb-2"
-              >
-                ACTION
-              </SecondaryButton>
-              <SecondaryButton
-                onClick={genreClick}
-                style={{ flex: "1 0 80px" }}
-                className="mx-2 mb-2"
-              >
-                CASUAL
-              </SecondaryButton>
-              <SecondaryButton
-                onClick={genreClick}
-                style={{ flex: "1 0 80px" }}
-                className="mx-2 mb-2"
-              >
-                ADVENTURE
-              </SecondaryButton>
-              <SecondaryButton
-                onClick={genreClick}
-                style={{ flex: "1 0 80px" }}
-                className="mx-2 mb-2"
-              >
-                ACTION
-              </SecondaryButton>
-              <SecondaryButton
-                onClick={genreClick}
-                style={{ flex: "1 0 80px" }}
-                className="mx-2 mb-2"
-              >
-                CASUAL
-              </SecondaryButton>
-              <SecondaryButton
-                onClick={genreClick}
-                style={{ flex: "1 0 80px" }}
-                className="mx-2 mb-2"
-              >
-                ADVENTURE
-              </SecondaryButton>
-            </div>
+            <GenreTabs
+              genres={genres}
+              onGenreClick={genreClick}
+              selectedGenres={searchGenres}
+            />
           </Col>
         </Collapse>
-        <CardsContainer />
+        <CardsContainer games={filteredGames} />
       </Row>
     </Container>
   );

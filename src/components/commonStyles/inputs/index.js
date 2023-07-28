@@ -31,3 +31,16 @@ export const FormTextarea = styled.textarea`
     font-weight: bold !important;
   }
 `;
+
+export const SearchInput = styled.input`
+  flex: 1 0 100px;
+  max-width: 500px;
+  font-family: "Roboto Mono", sans-serif;
+  min-height: calc(2.5rem + 0.7vw) !important;
+  max-height: calc(2.5rem + 0.7vw) !important;
+  outline: none !important;
+  &::placeholder {
+    font-size: calc(0.8rem + 0.5vw) !important;
+    font-weight: bold !important;
+  }
+`;
