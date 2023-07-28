@@ -27,7 +27,7 @@ export default function CardsContainer({ games = [] }) {
           data-id={game.id}
         >
           <Col md={8}>
-            <CardLink to={`/games/${game.id}`}>
+            <CardLink to={`/game/${game.id}`}>
               <GameCard className="my-2 h-100">
                 <Col xs={3} md={11} className="h-100 card__image-container">
                   <Card.Img
