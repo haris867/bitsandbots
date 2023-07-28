@@ -3,6 +3,8 @@ import { CardLink, GameCard } from "../commonStyles/cards";
 import { PrimaryButton, SecondaryButton } from "../commonStyles/buttons";
 import { styled } from "styled-components";
 import { TiStar } from "react-icons/ti";
+import { FaShoppingCart } from "react-icons/fa";
+import { useState } from "react";
 
 const RatingIcon = styled(TiStar)`
   fill: var(--color-primary) !important;
@@ -14,7 +16,28 @@ const ButtonContainer = styled.div`
   gap: 5px;
 `;
 
+const CartIcon = styled(FaShoppingCart)`
+  color: var(--color-secondary);
+  font-size: 1em;
+  display: ${(props) => (props.hide ? "none" : "block")};
+`;
+
 export default function CardsContainer({ games = [] }) {
+  // function addCartClick(e) {
+  //   e.preventDefault();
+  //   console.log(e.target);
+  //   e.target.innerHTML = "ADDED";
+  // }
+
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  const addCartClick = (e, id) => {
+    e.preventDefault();
+    setAddedToCart((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+  };
   return (
     <div className="d-flex flex-wrap">
       {games.map((game) => (
@@ -55,7 +78,18 @@ export default function CardsContainer({ games = [] }) {
                       </Card.Text>
                     </div>
                     <ButtonContainer className="card__button-container">
-                      <PrimaryButton>ADD TO CART</PrimaryButton>
+                      <PrimaryButton
+                        className="d-flex justify-content-center align-items-center"
+                        onClick={(e) => addCartClick(e, game.id)}
+                      >
+                        {addedToCart[game.id] ? (
+                          <>
+                            ADDED <CartIcon />
+                          </>
+                        ) : (
+                          "ADD TO CART"
+                        )}
+                      </PrimaryButton>
                       <SecondaryButton>VIEW</SecondaryButton>
                     </ButtonContainer>
                   </Card.Body>
