@@ -33,7 +33,6 @@ const FooterLink = styled(NavLink)`
 
 export default function Footer() {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <FooterContainer>

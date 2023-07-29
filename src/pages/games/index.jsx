@@ -14,6 +14,7 @@ import useGetData from "../../hooks/api/getData";
 import { LoadingSpinner } from "../../components/commonStyles/loadingSpinner";
 import GenreTabs from "../../components/genreTabs";
 import { SearchInput } from "../../components/commonStyles/inputs";
+import { fetchUrl } from "../../utils/constants";
 
 const SearchIcon = styled(BsSearch)`
   font-size: calc(1.325rem + 0.9vw) !important;
@@ -21,8 +22,7 @@ const SearchIcon = styled(BsSearch)`
 `;
 
 export default function Games() {
-  const gamesUrl = `https://qg8g236v.api.sanity.io/v2021-10-21/data/query/production?query=%7B%0A++%22genres%22%3A+*%5B_type+%3D%3D+%22genres%22%5D%7B%0A++++%22genres%22%3A+genres%2C%0A++++%2F%2F+Add+any+other+fields+you+want+here%0A++%7D%2C%0A++%22products%22%3A+*%5B_type+%3D%3D+%22Products%22%5D%7B%0A++++%22name%22%3A+name%2C%0A++++%22price%22%3A+price%2C%0A++++%22rating%22%3A+rating%2C%0A++++%22imageUrl%22%3A+image.asset-%3Eurl%2C%0A++++%22description%22%3A+description%2C%0A++++%22genres%22%3A+genres%2C%0A++++%22id%22%3A+_id%0A++%7D%0A%7D`;
-  const { data, isFetchLoading, isFetchError } = useGetData(gamesUrl);
+  const { data, isFetchLoading, isFetchError } = useGetData(fetchUrl);
 
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -71,10 +71,6 @@ export default function Games() {
       game.genres.some((genre) => searchGenres.includes(genre))
     );
   }
-
-  console.log(genres);
-
-  console.log(filteredGames);
 
   return (
     <Container>

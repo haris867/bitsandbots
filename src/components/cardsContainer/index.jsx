@@ -58,6 +58,7 @@ export default function CardsContainer({ games = [] }) {
                     variant="top"
                     alt={game.name}
                     src={game.imageUrl}
+                    loading="lazy"
                   />
                 </Col>
                 <Col xs={9} md={11} className="py-2 h-100 card-body__container">

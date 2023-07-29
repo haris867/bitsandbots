@@ -1,8 +1,4 @@
-import { Col, Collapse } from "react-bootstrap";
 import { SecondaryButton } from "../commonStyles/buttons";
-import { useState } from "react";
-import { styled } from "styled-components";
-import { SearchInput } from "../commonStyles/inputs";
 
 export default function GenreTabs({
   genres = [],
@@ -16,7 +12,9 @@ export default function GenreTabs({
           <SecondaryButton
             onClick={onGenreClick}
             style={{ flex: "1 0 80px" }}
-            className="mx-2 mb-2"
+            className={`mx-2 mb-2 ${
+              selectedGenres.includes(genre) ? "selected" : ""
+            }`}
           >
             {genre}
           </SecondaryButton>
