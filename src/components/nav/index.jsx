@@ -51,8 +51,6 @@ const IconContainer = styled.div`
 `;
 
 export default function Nav() {
-  //   const loggedIn = load("user");
-  //   const userData = loggedIn;
   const [open, setOpen] = useState(false);
 
   function logOut() {
