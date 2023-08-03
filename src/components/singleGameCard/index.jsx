@@ -1,11 +1,25 @@
+import { useEffect, useState } from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import * as S from "./index.styles";
 import { MainHeading } from "../commonStyles/headings";
-import { PrimaryButton } from "../commonStyles/buttons";
+import { PrimaryButton, SecondaryButton } from "../commonStyles/buttons";
+import { load, save } from "../../hooks/storage";
+import useCart from "../../hooks/useCart";
+import styled from "styled-components";
+import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-export default function SingleGameCard({ game = {} }) {
+const CartIcon = styled(FaShoppingCart)`
+  color: var(--color-secondary);
+  font-size: 1em;
+`;
+
+export default function SingleGameCard({ game = [] }) {
   const gameData = game;
   const genres = gameData.genres || [];
+
+  const [isInCart, handleCartClick] = useCart(gameData);
+
   return (
     <Container>
       <Col xs={12} className="text-center mt-3 mb-4 mx-auto">
@@ -26,8 +40,21 @@ export default function SingleGameCard({ game = {} }) {
               NOK {gameData.price}
             </S.SingleCardDetails>
           </div>
-          <div className="d-flex justify-content-center">
-            <PrimaryButton>ADD TO CART</PrimaryButton>
+          <div className="d-flex justify-content-center flex-column">
+            <PrimaryButton onClick={handleCartClick}>
+              {isInCart ? (
+                <>
+                  ADDED <CartIcon />{" "}
+                </>
+              ) : (
+                "ADD TO CART"
+              )}
+            </PrimaryButton>
+            {isInCart ? (
+              <Link to="/cart" className="text-center my-2">
+                <SecondaryButton className="w-100">GO TO CART</SecondaryButton>
+              </Link>
+            ) : null}
           </div>
         </Col>
         <Col xs={10} sm={10} md={8} lg={7} xl={6} className=" mb-4">
@@ -41,8 +68,8 @@ export default function SingleGameCard({ game = {} }) {
                 GENRES
               </S.SingleCardTitle>
               {genres.map((genre) => (
-                <S.SingleCardGenreTab className="me-2 mb-2">
-                  {genre}
+                <S.SingleCardGenreTab key={genre._id} className="me-2 mb-2">
+                  {genre.genre}
                 </S.SingleCardGenreTab>
               ))}
             </div>
