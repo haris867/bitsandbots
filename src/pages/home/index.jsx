@@ -4,6 +4,7 @@ import videoBgDesktop from "../../assets/videoBgDesktop.mp4";
 
 import { styled } from "styled-components";
 import AuthModal from "../../components/authModal";
+import { load } from "../../hooks/storage";
 
 const Video = styled.video`
   position: absolute;
@@ -17,6 +18,10 @@ const Video = styled.video`
 `;
 
 export default function Home() {
+  const isLoggedIn = load("loggedInUser");
+  if (isLoggedIn) {
+    window.location.href = `/games`;
+  }
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {

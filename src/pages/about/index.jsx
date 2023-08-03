@@ -6,8 +6,10 @@ import {
   AboutCardTitle,
   AboutCardText,
 } from "./index.styles";
+import useAuthentication from "../../hooks/useAuth";
 
 export default function About() {
+  useAuthentication();
   return (
     <Container>
       <Col

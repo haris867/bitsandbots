@@ -10,8 +10,11 @@ import {
   FormLabel,
   FormTextarea,
 } from "../../components/commonStyles/inputs";
+import useAuthentication from "../../hooks/useAuth";
 
 export default function Contact() {
+  useAuthentication();
+
   const { register, handleSubmit } = useForm();
 
   function onContactSubmit(data) {

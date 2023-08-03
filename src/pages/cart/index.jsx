@@ -9,8 +9,15 @@ import { PrimaryButton } from "../../components/commonStyles/buttons";
 import { Link } from "react-router-dom";
 import { CartContainer } from "../../components/cartContainer";
 import { load } from "../../hooks/storage";
+import useAuthentication from "../../hooks/useAuth";
 
 export default function Cart() {
+  useAuthentication();
+  const isLoggedIn = load("loggedInUser");
+
+  if (!isLoggedIn) {
+    window.location.href = `/`;
+  }
   const [gameList, setGameList] = useState(JSON.parse(load("cart")) || []);
   useEffect(() => {
     setGameList(JSON.parse(load("cart")) || []);

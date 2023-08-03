@@ -15,6 +15,7 @@ import { LoadingSpinner } from "../../components/commonStyles/loadingSpinner";
 import GenreTabs from "../../components/genreTabs";
 import { SearchInput } from "../../components/commonStyles/inputs";
 import { fetchUrl } from "../../utils/constants";
+import useAuthentication from "../../hooks/useAuth";
 
 const SearchIcon = styled(BsSearch)`
   font-size: calc(1.325rem + 0.9vw) !important;
@@ -22,6 +23,8 @@ const SearchIcon = styled(BsSearch)`
 `;
 
 export default function Games() {
+  useAuthentication();
+
   const { data, isFetchLoading, isFetchError } = useGetData(fetchUrl);
 
   const [open, setOpen] = useState(false);
