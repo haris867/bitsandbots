@@ -13,11 +13,7 @@ import useAuthentication from "../../hooks/useAuth";
 
 export default function Cart() {
   useAuthentication();
-  const isLoggedIn = load("loggedInUser");
 
-  if (!isLoggedIn) {
-    window.location.href = `/`;
-  }
   const [gameList, setGameList] = useState(JSON.parse(load("cart")) || []);
   useEffect(() => {
     setGameList(JSON.parse(load("cart")) || []);
