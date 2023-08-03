@@ -58,8 +58,9 @@ export default function Games() {
 
   var games = data.products;
   if (data && data.genres) {
-    var genres = data.genres[0].genres;
+    var genres = data.genres;
   }
+
   if (games) {
     var filteredGames = games.filter((game) =>
       game.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -68,7 +69,7 @@ export default function Games() {
 
   if (searchGenres.length > 0) {
     filteredGames = filteredGames.filter((game) =>
-      game.genres.some((genre) => searchGenres.includes(genre))
+      game.genres.some((genre) => searchGenres.includes(genre.genre))
     );
   }
 

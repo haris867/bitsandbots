@@ -15,8 +15,9 @@ export default function GenreTabs({
             className={`mx-2 mb-2 ${
               selectedGenres.includes(genre) ? "selected" : ""
             }`}
+            key={genre._id}
           >
-            {genre}
+            {genre.genre}
           </SecondaryButton>
         ))}
       </div>
