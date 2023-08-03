@@ -56,8 +56,8 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   function logOut() {
-    //   remove("user");
-    //   window.location = "/";
+    localStorage.clear();
+    window.location = "/";
   }
 
   const { pathname } = useLocation();
