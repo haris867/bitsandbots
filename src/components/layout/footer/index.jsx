@@ -16,14 +16,14 @@ const FooterContainer = styled.footer`
 
 const FooterContent = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(props) =>
+    props.pathname === "/" ? "start" : "space-between"};
   align-items: center;
   height: 100% !important;
 `;
 const FooterNavList = styled.ul`
   list-style-type: none;
   color: red !important;
-  display: ${(props) => (props.hide ? "none" : "block")};
 `;
 
 const FooterLink = styled(NavLink)`
@@ -36,7 +36,7 @@ export default function Footer() {
 
   return (
     <FooterContainer>
-      <FooterContent className="mt-4">
+      <FooterContent pathname={pathname} className="mt-4">
         <div className="footer-copyright">Bits & Bots &copy;</div>
 
         <div className="footer-logo-container logo-container">
@@ -44,19 +44,21 @@ export default function Footer() {
             <img src="/images/bits&bots-logo-icon.png" alt="Bits & Bots logo" />
           </Link>
         </div>
-        <div className="footer-links">
-          <FooterNavList className="mb-0" hide={pathname === "/"}>
-            <li>
-              <FooterLink to="/games">Games</FooterLink>
-            </li>
-            <li>
-              <FooterLink to="/about">About</FooterLink>
-            </li>
-            <li>
-              <FooterLink to="/contact">Contact</FooterLink>
-            </li>
-          </FooterNavList>
-        </div>
+        {pathname !== "/" && (
+          <div className="footer-links">
+            <FooterNavList className="mb-0">
+              <li>
+                <FooterLink to="/games">Games</FooterLink>
+              </li>
+              <li>
+                <FooterLink to="/about">About</FooterLink>
+              </li>
+              <li>
+                <FooterLink to="/contact">Contact</FooterLink>
+              </li>
+            </FooterNavList>
+          </div>
+        )}
       </FooterContent>
     </FooterContainer>
   );

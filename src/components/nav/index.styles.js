@@ -11,7 +11,6 @@ export const Nav = styled.nav`
   color: var(--color-secondary);
   text-align: center;
   border: 3px solid var(--color-primary);
-  display: ${(props) => (props.hide ? "none" : "block")};
   padding-bottom: 10px;
 `;
 export const NavContainer = styled.div`

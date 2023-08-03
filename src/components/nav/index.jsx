@@ -38,13 +38,11 @@ const MenuIcon = styled(RxHamburgerMenu)`
   :focus {
     background: none;
   }
-  display: ${(props) => (props.hide ? "none" : "block")};
 `;
 
 const CartIcon = styled(FaShoppingCart)`
   color: var(--color-secondary);
   font-size: 2.5em;
-  display: ${(props) => (props.hide ? "none" : "block")};
 `;
 const IconContainer = styled.div`
   display: flex;
@@ -58,19 +56,17 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   function logOut() {
-    console.log("log out");
     //   remove("user");
     //   window.location = "/";
   }
 
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <>
       <IconContainer>
         <Link to="/cart">
-          <CartIcon hide={pathname === "/"} />
+          <CartIcon />
         </Link>
         <IconButton
           onClick={() => setOpen(!open)}
@@ -78,11 +74,11 @@ export default function Nav() {
           aria-expanded={open}
           className="d-flex"
         >
-          <MenuIcon className="dropdown-toggle" hide={pathname === "/"} />
+          <MenuIcon className="dropdown-toggle" />
         </IconButton>
       </IconContainer>
       <Collapse in={open}>
-        <S.Nav id="collapse-nav" hide={pathname === "/"}>
+        <S.Nav id="collapse-nav">
           <S.NavList>
             <li>
               <S.NavBarLink

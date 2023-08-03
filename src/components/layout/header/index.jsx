@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Menu from "../../nav";
 import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const HeaderContainer = styled.header`
   min-height: 120px;
@@ -24,6 +25,7 @@ const LogoText = styled.p`
 `;
 
 export default function Header() {
+  const { pathname } = useLocation();
   return (
     <HeaderContainer>
       <div className="logo-container">
@@ -35,7 +37,7 @@ export default function Header() {
           <LogoText>BITS & BOTS</LogoText>
         </NavLink>
       </div>
-      <Menu />
+      {pathname !== "/" && <Menu />}
     </HeaderContainer>
   );
 }
