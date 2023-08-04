@@ -23,12 +23,26 @@ const RatingIcon = styled(TiStar)`
   font-size: calc(1.4rem + 0.4vw) !important;
 `;
 
+const TotalPriceContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-family: "Play", sans-serif;
+  font-weight: bold;
+  font-size: calc(1rem + 0.3vw);
+  margin: 10px 0;
+`;
+
 export function CartContainer({ gameList = [], setGameList }) {
   const removeGameFromCart = (gameId) => {
     const updatedGameList = gameList.filter((game) => game._id !== gameId);
     save("cart", JSON.stringify(updatedGameList));
     setGameList(updatedGameList);
   };
+
+  function calculateTotalPrice() {
+    return gameList.reduce((total, game) => total + game.price, 0);
+  }
+
   return (
     <div>
       {gameList.length > 0 ? (
@@ -71,6 +85,10 @@ export function CartContainer({ gameList = [], setGameList }) {
               </Col>
             ))}
           </CartContainerDiv>
+          <TotalPriceContainer>
+            <div>YOUR TOTAL IS: </div>
+            <div>NOK {calculateTotalPrice()}</div>
+          </TotalPriceContainer>
           <Link to="/checkout" className="text-center my-3">
             <PrimaryButton>CHECKOUT</PrimaryButton>
           </Link>
