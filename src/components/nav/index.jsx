@@ -112,11 +112,11 @@ export default function Nav() {
               </S.NavBarLink>
             </li>
           </S.NavList>
-          <S.NavBarLink className="d-flex">
+          <div className="d-flex mx-2">
             <SecondaryButton onClick={logOut} style={{ flex: "1 0 120px" }}>
               LOG OUT
             </SecondaryButton>
-          </S.NavBarLink>
+          </div>
         </S.Nav>
       </Collapse>
     </>
