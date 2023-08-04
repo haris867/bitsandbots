@@ -13,7 +13,7 @@ const Video = styled.video`
   top: 50%;
   height: 100%;
   object-fit: cover;
-  transform: translate(-50.2%, -50%);
+  transform: translate(-50.1%, -50%);
   z-index: -1;
 `;
 
