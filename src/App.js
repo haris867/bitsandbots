@@ -3,7 +3,7 @@ import "./App.css";
 import "./styles/scss/styles.scss";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/layout";
-import { Home, Games, Game, About, Contact, Cart } from "./pages";
+import { Home, Games, Game, About, Contact, Cart, Checkout } from "./pages";
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Route>
       </Routes>
     </div>
