@@ -33,11 +33,11 @@ const TotalPriceContainer = styled.div`
 `;
 
 export function CartContainer({ gameList = [], setGameList }) {
-  const removeGameFromCart = (gameId) => {
+  function removeGameFromCart(gameId) {
     const updatedGameList = gameList.filter((game) => game._id !== gameId);
     save("cart", JSON.stringify(updatedGameList));
     setGameList(updatedGameList);
-  };
+  }
 
   function calculateTotalPrice() {
     return gameList.reduce((total, game) => total + game.price, 0);
