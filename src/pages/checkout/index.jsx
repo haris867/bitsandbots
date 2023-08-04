@@ -18,8 +18,6 @@ const CartContainerDiv = styled.div`
 export default function Checkout() {
   useAuthentication();
 
-  const { register, handleSubmit } = useForm();
-
   const [gameList, setGameList] = useState(JSON.parse(load("cart")) || []);
   useEffect(() => {
     setGameList(JSON.parse(load("cart")) || []);
