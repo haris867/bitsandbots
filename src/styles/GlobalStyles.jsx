@@ -10,6 +10,7 @@ html{
 body {
   background-color: var(--color-secondary);
   color: var(--color-tertiary);
+  font-family: "Play", sans-serif;
 }
 `;
 
