@@ -13,7 +13,7 @@ import {
 import useAuthentication from "../../hooks/useAuth";
 import useSendData from "../../hooks/api/sendData";
 import { useState, useEffect } from "react";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { load } from "../../hooks/storage";
 
 const ContactFormContainer = styled(Container)`

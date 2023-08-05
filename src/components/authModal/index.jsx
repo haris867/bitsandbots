@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { set, useForm } from "react-hook-form";
 import { Row, Col } from "react-bootstrap";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import * as S from "./index.styles";
 import Tab from "react-bootstrap/Tab";
 import { PrimaryButton } from "../commonStyles/buttons";

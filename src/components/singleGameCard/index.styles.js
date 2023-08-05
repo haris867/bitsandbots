@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 import { TiStar } from "react-icons/ti";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export const SingleCard = styled(Card)`
   background-color: var(--color-secondary);

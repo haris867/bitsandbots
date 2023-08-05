@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { Container, Card, Col, Row } from "react-bootstrap";
 import { TiDelete, TiStar } from "react-icons/ti";
 import { Link } from "react-router-dom";

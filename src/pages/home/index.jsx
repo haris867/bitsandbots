@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import videoBgMobile from "../../assets/videoBgMobile.mp4";
 import videoBgDesktop from "../../assets/videoBgDesktop.mp4";
 
-import { styled } from "styled-components";
+import styled from "styled-components";
 import AuthModal from "../../components/authModal";
 import { load } from "../../hooks/storage";
 

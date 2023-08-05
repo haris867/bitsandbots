@@ -3,7 +3,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Collapse from "react-bootstrap/Collapse";
-import { styled } from "styled-components";
+import styled from "styled-components";
 // import { load, remove } from "../../storage";
 import * as S from "./index.styles";
 import { SecondaryButton } from "../commonStyles/buttons";

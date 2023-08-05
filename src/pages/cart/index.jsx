@@ -4,7 +4,7 @@ import {
   MainHeadingContainer,
 } from "../../components/commonStyles/headings";
 import { Container, Card, Col, Row } from "react-bootstrap";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { PrimaryButton } from "../../components/commonStyles/buttons";
 import { Link } from "react-router-dom";
 import { CartContainer } from "../../components/cartContainer";

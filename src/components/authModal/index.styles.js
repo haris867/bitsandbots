@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import Tabs from "react-bootstrap/Tabs";
 import { Col } from "react-bootstrap";
 import { FormInput, FormLabel } from "../commonStyles/inputs";

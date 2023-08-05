@@ -5,7 +5,7 @@ import {
 import React, { useState } from "react";
 import { Collapse } from "react-bootstrap";
 import { Container, Card, Col, Row } from "react-bootstrap";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
 import { MainHeading } from "../../components/commonStyles/headings";
 import { GameCard } from "../../components/commonStyles/cards";
