@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Collapse from "react-bootstrap/Collapse";
 import * as S from "./index.styles";
 import { LogOutButton } from "../commonStyles/buttons";
-import { useLocation } from "react-router-dom";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
