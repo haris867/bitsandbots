@@ -10,7 +10,7 @@ import { SearchInput } from "../../components/commonStyles/inputs";
 import { fetchUrl } from "../../utils/constants";
 import useAuthentication from "../../hooks/useAuth";
 import * as S from "./index.styles";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Games() {
   useAuthentication();

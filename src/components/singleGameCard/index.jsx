@@ -4,7 +4,7 @@ import { MainHeading } from "../commonStyles/headings";
 import { PrimaryButton, SecondaryButton } from "../commonStyles/buttons";
 import useCart from "../../hooks/useCart";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function SingleGameCard({ game = [] }) {
   const gameData = game;

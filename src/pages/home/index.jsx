@@ -4,7 +4,7 @@ import videoBgDesktop from "../../assets/videoBgDesktop.mp4";
 import AuthModal from "../../components/authModal";
 import { load } from "../../hooks/storage";
 import * as S from "./index.styles";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Home() {
   const isLoggedIn = load("loggedInUser");

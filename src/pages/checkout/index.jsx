@@ -4,7 +4,7 @@ import { Container, Col } from "react-bootstrap";
 import { load } from "../../hooks/storage";
 import useAuthentication from "../../hooks/useAuth";
 import { CheckoutCartContainer } from "../../components/checkoutCartContainer";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Checkout() {
   useAuthentication();

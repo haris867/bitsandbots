@@ -2,7 +2,7 @@ import { MainHeading } from "../../components/commonStyles/headings";
 import { Container, Col, Row } from "react-bootstrap";
 import * as S from "./index.styles";
 import useAuthentication from "../../hooks/useAuth";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function About() {
   useAuthentication();

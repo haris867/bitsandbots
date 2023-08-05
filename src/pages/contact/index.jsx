@@ -11,7 +11,7 @@ import useAuthentication from "../../hooks/useAuth";
 import useSendData from "../../hooks/api/sendData";
 import { useState, useEffect } from "react";
 import { load } from "../../hooks/storage";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Contact() {
   useAuthentication();
