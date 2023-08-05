@@ -142,7 +142,7 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
                 placeholder="Your full name"
                 {...registerCheckout("name")}
                 required={true}
-                title="The name value must be minimum 5 characters long"
+                title="The name must be minimum 5 characters long"
                 minLength={5}
               />
               <FormLabel className="mb-1" htmlFor="address">
@@ -154,7 +154,7 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
                 placeholder="Your address"
                 {...registerCheckout("address")}
                 required={true}
-                title="The name value must be minimum 5 characters long"
+                title="The address must be minimum 5 characters long"
                 minLength={5}
               />
               <div className="d-flex justify-content-between w-100">
@@ -182,7 +182,7 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
                     placeholder="Your city"
                     {...registerCheckout("city")}
                     required={true}
-                    title="The city value must be minimum 4 characters long"
+                    title="The city must be minimum 4 characters long"
                     minLength={4}
                   />
                 </Col>
@@ -196,7 +196,7 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
                 placeholder="Your card number"
                 {...registerCheckout("cardNumber")}
                 required={true}
-                title="The card number value must be minimum 15 digits long"
+                title="The card number must be minimum 15 digits long"
                 minLength={15}
                 maxLength={16}
                 pattern="[0-9]{15,}"
@@ -209,7 +209,7 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
                   <FormInput
                     className="mb-2"
                     type="text"
-                    placeholder="Your expiry date"
+                    placeholder="MM/YY"
                     {...registerCheckout("expiryDate")}
                     required={true}
                     title="The expiry date must be in MM/YY format"
@@ -226,7 +226,7 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
                     placeholder="Your CVC"
                     {...registerCheckout("cvc")}
                     required={true}
-                    title="The CVC number must be minimum 3 digits long"
+                    title="The CVC number must be 3 digits long"
                     minLength={3}
                     maxLength={3}
                     pattern="[0-9]{3,}"

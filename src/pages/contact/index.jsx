@@ -89,7 +89,8 @@ export default function Contact() {
             placeholder="Your subject"
             {...register("subject")}
             required={true}
-            title="The name value must be minimum 5 characters long"
+            title="The name must be minimum 5 characters long"
+            minLength={5}
           />
           <FormLabel className="mb-1" htmlFor="message">
             Your message
@@ -100,6 +101,7 @@ export default function Contact() {
             {...register("message")}
             required={true}
             minLength="10"
+            title="The message must be minimum 10 characters long"
           />
           <PrimaryButton className="mt-2 my-4" type="submit">
             SUBMIT
