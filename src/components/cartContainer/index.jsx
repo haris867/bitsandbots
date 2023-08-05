@@ -23,7 +23,12 @@ export function CartContainer({ gameList = [], setGameList }) {
         <div className="d-flex flex-column">
           <CartContainerDiv className="d-flex flex-wrap justify-content-center p-3">
             {gameList.map((game) => (
-              <CartGameContainer xs={12} sm={10} className="d-flex m-2">
+              <CartGameContainer
+                xs={12}
+                sm={10}
+                className="d-flex m-2"
+                key={game._id}
+              >
                 <Col xs={2} className="m-2 d-flex object-fit-contain">
                   <img src={game.imageUrl} alt={game.name} className="w-100" />
                 </Col>
