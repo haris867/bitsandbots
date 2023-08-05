@@ -1,4 +1,4 @@
-import { GenreButton, SecondaryButton } from "../commonStyles/buttons";
+import { GenreButton } from "../commonStyles/buttons";
 
 export default function GenreTabs({
   genres = [],

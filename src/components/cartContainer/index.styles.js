@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { TiDelete, TiStar } from "react-icons/ti";
-import { Col } from "react-bootstrap";
 
 export const RemoveIcon = styled(TiDelete)`
   color: var(--color-primary);

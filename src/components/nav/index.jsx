@@ -13,8 +13,6 @@ export default function Nav() {
     window.location = "/";
   }
 
-  const { pathname } = useLocation();
-
   return (
     <>
       <div className="d-flex align-items-center gap-3">
