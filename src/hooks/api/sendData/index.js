@@ -13,8 +13,6 @@ export default function useSendData() {
       Authorization: `Bearer ${accessToken}`,
     };
 
-    console.log(accessToken);
-
     const options = {
       headers,
       method: method.toUpperCase(),

@@ -62,8 +62,6 @@ export default function AuthModal() {
       return;
     }
 
-    console.log(users);
-
     users.push(newUser);
 
     save("users", JSON.stringify(users));
