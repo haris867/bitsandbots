@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="footer__copyright">Bits & Bots &copy;</div>
 
         <div className="footer__logo-container logo-container">
-          <Link to="/">
+          <Link to="/games">
             <img src="/images/bits&bots-logo-icon.png" alt="Bits & Bots logo" />
           </Link>
         </div>

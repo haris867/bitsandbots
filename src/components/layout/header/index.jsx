@@ -9,7 +9,7 @@ export default function Header() {
     <S.HeaderContainer>
       <div className="logo-container">
         <NavLink
-          to="/"
+          to="/games"
           className="d-flex align-items-center text-decoration-none"
         >
           <img src="/images/bits&bots-logo-icon.png" alt="Bits & Bots logo" />
