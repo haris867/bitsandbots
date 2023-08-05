@@ -7,17 +7,6 @@ import Tab from "react-bootstrap/Tab";
 import { PrimaryButton } from "../commonStyles/buttons";
 import { load, save } from "../../hooks/storage";
 
-const AuthFormContainer = styled(Col)`
-  min-height: 250px;
-  //   min-width: 300px;
-  //   max-width: 500px;
-  background-color: var(--color-quaternary);
-  margin: 50px auto;
-  padding: 0;
-  font-family: "Play", sans-serif;
-  border-radius: 5px;
-`;
-
 export default function AuthModal() {
   const {
     register: registerLogin,
@@ -32,7 +21,7 @@ export default function AuthModal() {
 
   const [activeTab, setActiveTab] = useState("login");
   const [loginFormMessage, setLoginFormMessage] = useState(false);
-  const [registerFormValidated, setRegisterFormValidated] = useState(false);
+  const [registerFormMessage, setRegisterFormMessage] = useState("");
 
   function onLoginSubmit(data) {
     let users = load("users");
@@ -65,6 +54,15 @@ export default function AuthModal() {
     var users = load("users");
     users = users ? JSON.parse(users) : [];
 
+    const existingUser = users.find(
+      (user) => user.email.toLowerCase() === data.email.toLowerCase()
+    );
+
+    if (existingUser) {
+      setRegisterFormMessage("User with this email already exists!");
+      return;
+    }
+
     console.log(users);
 
     users.push(newUser);
@@ -74,12 +72,12 @@ export default function AuthModal() {
     setTimeout(() => {
       setActiveTab("login");
     }, 2000);
-    setRegisterFormValidated(true);
+    setRegisterFormMessage("Registered successfully!");
   }
 
   return (
     <Row className="m-0">
-      <AuthFormContainer xs={8} sm={6} md={4}>
+      <S.AuthFormContainer xs={8} sm={6} md={4}>
         <S.AuthTabs
           activeKey={activeTab}
           onSelect={(t) => setActiveTab(t)}
@@ -92,7 +90,6 @@ export default function AuthModal() {
               onSubmit={handleLoginSubmit(onLoginSubmit)}
             >
               <div>{loginFormMessage}</div>
-              {/* {loginFormValidated && <div>Logging in...</div>} */}
               <S.AuthFormLabel className="mb-1" htmlFor="email">
                 Email
               </S.AuthFormLabel>
@@ -127,7 +124,8 @@ export default function AuthModal() {
               className="d-flex flex-column align-items-center"
               onSubmit={handleRegisterSubmit(onRegisterSubmit)}
             >
-              {registerFormValidated && <div>Registered successfully!</div>}
+              <div>{registerFormMessage}</div>
+
               <S.AuthFormLabel className="mb-1" htmlFor="name">
                 Full name
               </S.AuthFormLabel>
@@ -170,7 +168,7 @@ export default function AuthModal() {
             </form>
           </Tab>
         </S.AuthTabs>
-      </AuthFormContainer>
+      </S.AuthFormContainer>
     </Row>
   );
 }

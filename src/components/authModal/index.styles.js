@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import Tabs from "react-bootstrap/Tabs";
-import Tab from "react-bootstrap/Tab";
+import { Col } from "react-bootstrap";
 import { FormInput, FormLabel } from "../commonStyles/inputs";
 
 export const AuthFormLabel = styled(FormLabel)`
@@ -16,5 +16,14 @@ export const AuthTabs = styled(Tabs)`
   display: flex;
   justify-content: space-around;
   background: var(--color-primary);
+  border-radius: 5px;
+`;
+
+export const AuthFormContainer = styled(Col)`
+  min-height: 250px;
+  background-color: var(--color-quaternary);
+  margin: 50px auto;
+  padding: 0;
+  font-family: "Play", sans-serif;
   border-radius: 5px;
 `;
