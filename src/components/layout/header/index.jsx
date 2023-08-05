@@ -8,13 +8,20 @@ export default function Header() {
   return (
     <S.HeaderContainer>
       <div className="logo-container">
-        <NavLink
-          to="/games"
-          className="d-flex align-items-center text-decoration-none"
-        >
-          <img src="/images/bits&bots-logo-icon.png" alt="Bits & Bots logo" />
-          <S.LogoText>BITS & BOTS</S.LogoText>
-        </NavLink>
+        {pathname === "/" ? (
+          <div className="d-flex align-items-center">
+            <img src="/images/bits&bots-logo-icon.png" alt="Bits & Bots logo" />
+            <S.LogoText>BITS & BOTS</S.LogoText>
+          </div>
+        ) : (
+          <NavLink
+            to="/games"
+            className="d-flex align-items-center text-decoration-none"
+          >
+            <img src="/images/bits&bots-logo-icon.png" alt="Bits & Bots logo" />
+            <S.LogoText>BITS & BOTS</S.LogoText>
+          </NavLink>
+        )}
       </div>
       {pathname !== "/" && <Menu />}
     </S.HeaderContainer>
