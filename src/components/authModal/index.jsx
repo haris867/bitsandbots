@@ -98,7 +98,7 @@ export default function AuthModal() {
                 placeholder="Your email address"
                 {...registerLogin("email")}
                 required={true}
-                title="The email value must be a valid email"
+                title="The email must be a valid email"
               />
               <S.AuthFormLabel className="mb-1" htmlFor="password">
                 Password
@@ -145,8 +145,7 @@ export default function AuthModal() {
                 placeholder="Your email"
                 {...registerRegister("email")}
                 required={true}
-                // pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-                title="The email value must be a valid email"
+                title="The email must be a valid email"
               />
               <S.AuthFormLabel className="mb-1" htmlFor="password">
                 Password
