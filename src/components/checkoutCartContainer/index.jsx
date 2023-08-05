@@ -1,27 +1,19 @@
 import styled from "styled-components";
-import { Container, Card, Col, Row } from "react-bootstrap";
-import { TiDelete, TiStar } from "react-icons/ti";
+import { Col } from "react-bootstrap";
+import { TiStar } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { PrimaryButton } from "../commonStyles/buttons";
-import { remove, save } from "../../hooks/storage";
+import { remove } from "../../hooks/storage";
 import { useForm } from "react-hook-form";
-import {
-  FormInput,
-  FormLabel,
-  FormTextarea,
-} from "../../components/commonStyles/inputs";
-import { useState } from "react";
+import { FormInput, FormLabel } from "../../components/commonStyles/inputs";
+import { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
+import useSendData from "../../hooks/api/sendData";
 
 const CartContainerDiv = styled.div`
   background-color: var(--color-quaternary);
   border-radius: 5px;
   font-family: "Play", sans-serif;
-`;
-
-const RatingIcon = styled(TiStar)`
-  fill: var(--color-primary) !important;
-  font-size: calc(1.4rem + 0.4vw) !important;
 `;
 
 const TotalPriceContainer = styled.div`
@@ -34,6 +26,10 @@ const TotalPriceContainer = styled.div`
 `;
 
 export function CheckoutCartContainer({ gameList = [], setGameList }) {
+  const { sendData, isLoading, isError } = useSendData();
+  const [formData, setFormData] = useState(null);
+  const [orderFormMessage, setOrderFormMessage] = useState("");
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -43,13 +39,65 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
     return gameList.reduce((total, game) => total + game.price, 0);
   }
 
-  const { register: registerCheckout, handleSubmit: handleSubmitCheckout } =
-    useForm();
+  const {
+    register: registerCheckout,
+    handleSubmit: handleSubmitCheckout,
+    reset: resetCheckout,
+  } = useForm();
 
-  function onOrderSubmit(data) {
-    remove("cart");
-    window.location.href = `/games`;
+  function handleFormSubmit(data) {
+    setFormData(data);
+    handleShow();
   }
+
+  async function onOrderSubmit(data) {
+    if (!formData) return;
+
+    const url =
+      "https://qg8g236v.api.sanity.io/v2021-10-21/data/mutate/production";
+    const method = "POST";
+    const orderData = {
+      mutations: [
+        {
+          create: {
+            _type: "orders",
+            name: formData.name,
+            address: formData.address,
+            zip: formData.zip,
+            city: formData.city,
+            totalAmount: calculateTotalPrice(),
+            gamesOrdered: gameList.map((game) => ({
+              _type: "reference",
+              _key: game._id,
+              _ref: game._id,
+            })),
+          },
+        },
+      ],
+    };
+
+    const result = await sendData(orderData, url, method);
+
+    if (result.error && result.error.length > 0) {
+      setOrderFormMessage(`${result.error}: ${result.message}`);
+    } else if (result) {
+      remove("cart");
+      resetCheckout();
+      setOrderFormMessage("Order submitted successfully!");
+      handleClose();
+      setTimeout(() => {
+        window.location.href = `/games`;
+      }, 2000);
+    }
+  }
+
+  useEffect(() => {
+    if (isLoading) {
+      setOrderFormMessage("Placing order...");
+    } else if (isError) {
+      setOrderFormMessage("Something went wrong. Please try again later.");
+    }
+  }, [isLoading, isError]);
 
   return (
     <div>
@@ -94,9 +142,10 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
             </div>
           </TotalPriceContainer>
           <Col xs={12} className="mx-auto">
+            <div className="fs-6 fw-bold text-center">{orderFormMessage}</div>
             <form
               className="d-flex flex-column align-items-center"
-              onSubmit={handleSubmitCheckout(handleShow)}
+              onSubmit={handleSubmitCheckout(handleFormSubmit)}
             >
               <FormLabel className="mb-1" htmlFor="name">
                 Full name
@@ -204,7 +253,7 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
               <Modal.Header closeButton>
                 <Modal.Title>Confirm payment</Modal.Title>
               </Modal.Header>
-              <Modal.Body className="text-center">
+              <Modal.Body className="text-center fw-bold">
                 Click CONFIRM to place your order.
               </Modal.Body>
               <Modal.Footer className="d-block text-center">

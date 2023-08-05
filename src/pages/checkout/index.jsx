@@ -1,19 +1,9 @@
 import { useState, useEffect } from "react";
 import { MainHeading } from "../../components/commonStyles/headings";
-import { Container, Card, Col, Row } from "react-bootstrap";
-import styled from "styled-components";
-import { PrimaryButton } from "../../components/commonStyles/buttons";
-import { Link } from "react-router-dom";
+import { Container, Col } from "react-bootstrap";
 import { load } from "../../hooks/storage";
 import useAuthentication from "../../hooks/useAuth";
 import { CheckoutCartContainer } from "../../components/checkoutCartContainer";
-import { useForm } from "react-hook-form";
-
-const CartContainerDiv = styled.div`
-  background-color: var(--color-quaternary);
-  border-radius: 5px;
-  font-family: "Play", sans-serif;
-`;
 
 export default function Checkout() {
   useAuthentication();
