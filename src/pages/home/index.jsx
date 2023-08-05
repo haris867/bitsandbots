@@ -1,21 +1,10 @@
 import React, { useState, useEffect } from "react";
 import videoBgMobile from "../../assets/videoBgMobile.mp4";
 import videoBgDesktop from "../../assets/videoBgDesktop.mp4";
-
-import styled from "styled-components";
 import AuthModal from "../../components/authModal";
 import { load } from "../../hooks/storage";
-
-const Video = styled.video`
-  position: absolute;
-  width: 100%;
-  left: 50%;
-  top: 50%;
-  height: 100%;
-  object-fit: cover;
-  transform: translate(-50.1%, -50%);
-  z-index: -1;
-`;
+import * as S from "./index.styles";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   const isLoggedIn = load("loggedInUser");
@@ -32,12 +21,15 @@ export default function Home() {
 
   return (
     <div>
-      <Video
+      <Helmet>
+        <title>Bits & Bots | Home</title>
+      </Helmet>
+      <S.Video
         autoPlay
         loop
         muted
         src={isMobile ? videoBgMobile : videoBgDesktop}
-      ></Video>
+      />
       <AuthModal />
     </div>
   );

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { set, useForm } from "react-hook-form";
-import { Row, Col } from "react-bootstrap";
-import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { Row } from "react-bootstrap";
 import * as S from "./index.styles";
 import Tab from "react-bootstrap/Tab";
 import { PrimaryButton } from "../commonStyles/buttons";
@@ -20,7 +19,7 @@ export default function AuthModal() {
   } = useForm();
 
   const [activeTab, setActiveTab] = useState("login");
-  const [loginFormMessage, setLoginFormMessage] = useState(false);
+  const [loginFormMessage, setLoginFormMessage] = useState("");
   const [registerFormMessage, setRegisterFormMessage] = useState("");
 
   function onLoginSubmit(data) {

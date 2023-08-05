@@ -62,18 +62,18 @@ li a:hover {
   background-color: var(--color-primary) !important;
 }
 
-.footer-copyright {
+.footer__copyright {
   width: 33.33%;
   font-size: calc(1em + 0.3vw);
 }
 
-.footer-logo-container {
+.footer__logo-container {
   width: 33.3%;
   display: flex;
   justify-content: center;
 }
 
-.footer-links {
+.footer__links {
   width: 33.33%;
   display: flex;
   justify-content: flex-end;
@@ -136,6 +136,6 @@ li a:hover {
     margin-bottom: 0 !important;
   }
   video {
-    transform: translate(-50.05%, -50%) !important;
+    transform: translate(-50%, -50%) !important;
   }
 }

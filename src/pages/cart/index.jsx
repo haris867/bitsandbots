@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
-import {
-  MainHeading,
-  MainHeadingContainer,
-} from "../../components/commonStyles/headings";
-import { Container, Card, Col, Row } from "react-bootstrap";
-import styled from "styled-components";
-import { PrimaryButton } from "../../components/commonStyles/buttons";
-import { Link } from "react-router-dom";
+import { MainHeading } from "../../components/commonStyles/headings";
+import { Container, Col } from "react-bootstrap";
 import { CartContainer } from "../../components/cartContainer";
 import { load } from "../../hooks/storage";
 import useAuthentication from "../../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 export default function Cart() {
   useAuthentication();
@@ -27,6 +22,9 @@ export default function Cart() {
       >
         <MainHeading className="fs-2 fw-bold mb-3">Your cart</MainHeading>
       </Col>
+      <Helmet>
+        <title>Bits & Bots | Cart</title>
+      </Helmet>
       <Col xs={12} md={8} lg={6} className="mx-auto">
         <CartContainer gameList={gameList} setGameList={setGameList} />
       </Col>

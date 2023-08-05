@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { FaShoppingCart } from "react-icons/fa";
 
 export const Nav = styled.nav`
   position: absolute;
@@ -32,4 +34,27 @@ export const NavBarLink = styled(NavLink)`
     color: var(--color-primary);
     text-decoration: underline;
   }
+`;
+
+export const IconButton = styled.button`
+  background: none;
+  color: var(--color-secondary);
+  border: none;
+  padding: 0;
+`;
+
+export const MenuIcon = styled(RxHamburgerMenu)`
+  font-size: 2.5em;
+  cursor: pointer;
+  :hover {
+    background: none !important;
+  }
+  :focus {
+    background: none;
+  }
+`;
+
+export const CartIcon = styled(FaShoppingCart)`
+  color: var(--color-secondary);
+  font-size: 2.5em;
 `;

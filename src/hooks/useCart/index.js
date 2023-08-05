@@ -6,19 +6,19 @@ export default function useCart(gameData) {
 
   useEffect(() => {
     let cart = JSON.parse(load("cart")) || [];
-    let found = cart.some((el) => el._id === gameData._id);
+    let found = cart.some((game) => game._id === gameData._id);
     setIsInCart(found);
   }, [gameData]);
 
-  const handleCartClick = (e) => {
+  function handleCartClick(e) {
     e.preventDefault();
 
     let cart = JSON.parse(load("cart")) || [];
 
-    let found = cart.some((el) => el._id === gameData._id);
+    let found = cart.some((game) => game._id === gameData._id);
 
     if (found) {
-      cart = cart.filter((el) => el._id !== gameData._id);
+      cart = cart.filter((game) => game._id !== gameData._id);
     } else {
       let gameToCart = {
         _id: gameData._id,
@@ -32,7 +32,7 @@ export default function useCart(gameData) {
 
     save("cart", JSON.stringify(cart));
     setIsInCart(!found);
-  };
+  }
 
   return [isInCart, handleCartClick];
 }

@@ -8,6 +8,7 @@ export const GameCard = styled(Card)`
   flex-direction: row;
   font-family: "Play", sans-serif;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 `;
 
 export const CardLink = styled(Link)`

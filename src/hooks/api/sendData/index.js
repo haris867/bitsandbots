@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { load } from "../../storage";
 import { accessToken } from "../../../utils/constants";
 
 export default function useSendData() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const loggedInUser = load("user");
 
   async function sendData(data, url, method) {
     var result;

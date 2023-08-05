@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import SingleGameCard from "../../components/singleGameCard";
 import useGetData from "../../hooks/api/getData";
 import { LoadingSpinner } from "../../components/commonStyles/loadingSpinner";
-import { load } from "../../hooks/storage";
 import useAuthentication from "../../hooks/useAuth";
 
 export default function Game() {

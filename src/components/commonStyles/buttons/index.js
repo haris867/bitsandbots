@@ -19,3 +19,10 @@ export const SecondaryButton = styled(PrimaryButton)`
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
 `;
+
+export const GenreButton = styled(SecondaryButton)`
+  flex: 1 0 80px;
+`;
+export const LogOutButton = styled(SecondaryButton)`
+  flex: 1 0 120px;
+`;

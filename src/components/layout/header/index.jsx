@@ -1,43 +1,22 @@
-import styled from "styled-components";
 import Menu from "../../nav";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
-const HeaderContainer = styled.header`
-  min-height: 120px;
-  max-height: 120px;
-  background-color: var(--color-primary);
-  color: var(--color-secondary);
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  align-items: center;
-`;
-
-const LogoText = styled.p`
-  font-size: calc(1.2em + 0.8vw);
-  text-decoration: none;
-  text-underline: none;
-  color: var(--color-secondary);
-  margin: 0 10px;
-  font-family: "Play", sans-serif;
-  font-weight: bold;
-`;
+import * as S from "./index.styles";
 
 export default function Header() {
   const { pathname } = useLocation();
   return (
-    <HeaderContainer>
+    <S.HeaderContainer>
       <div className="logo-container">
         <NavLink
           to="/"
           className="d-flex align-items-center text-decoration-none"
         >
           <img src="/images/bits&bots-logo-icon.png" alt="Bits & Bots logo" />
-          <LogoText>BITS & BOTS</LogoText>
+          <S.LogoText>BITS & BOTS</S.LogoText>
         </NavLink>
       </div>
       {pathname !== "/" && <Menu />}
-    </HeaderContainer>
+    </S.HeaderContainer>
   );
 }

@@ -1,18 +1,10 @@
-import { useEffect, useState } from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import * as S from "./index.styles";
 import { MainHeading } from "../commonStyles/headings";
 import { PrimaryButton, SecondaryButton } from "../commonStyles/buttons";
-import { load, save } from "../../hooks/storage";
 import useCart from "../../hooks/useCart";
-import styled from "styled-components";
-import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
-const CartIcon = styled(FaShoppingCart)`
-  color: var(--color-secondary);
-  font-size: 1em;
-`;
+import { Helmet } from "react-helmet";
 
 export default function SingleGameCard({ game = [] }) {
   const gameData = game;
@@ -27,6 +19,11 @@ export default function SingleGameCard({ game = [] }) {
           {gameData.name}
         </MainHeading>
       </Col>
+      <Helmet>
+        <title>
+          {game && game.name ? `Bits & Bots | ${game.name}` : "Bits & Bots"}
+        </title>
+      </Helmet>
       <Row className="d-flex justify-content-center">
         <Col xs={8} sm={7} md={6} lg={4} xl={3} className=" mb-4">
           <S.SingleCard>
@@ -44,7 +41,7 @@ export default function SingleGameCard({ game = [] }) {
             <PrimaryButton onClick={handleCartClick}>
               {isInCart ? (
                 <>
-                  ADDED <CartIcon />{" "}
+                  ADDED <S.CartIcon />{" "}
                 </>
               ) : (
                 "ADD TO CART"

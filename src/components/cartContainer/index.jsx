@@ -1,36 +1,14 @@
-import styled from "styled-components";
-import { Container, Card, Col, Row } from "react-bootstrap";
-import { TiDelete, TiStar } from "react-icons/ti";
+import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { PrimaryButton } from "../commonStyles/buttons";
 import { save } from "../../hooks/storage";
-
-const CartContainerDiv = styled.div`
-  background-color: var(--color-quaternary);
-  border-radius: 5px;
-  font-family: "Play", sans-serif;
-`;
-
-const RemoveIcon = styled(TiDelete)`
-  color: var(--color-primary);
-  font-size: calc(2rem + 2vw) !important;
-  cursor: pointer;
-  max-width: 50px;
-`;
-
-const RatingIcon = styled(TiStar)`
-  fill: var(--color-primary) !important;
-  font-size: calc(1.4rem + 0.4vw) !important;
-`;
-
-const TotalPriceContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  font-family: "Play", sans-serif;
-  font-weight: bold;
-  font-size: calc(1rem + 0.3vw);
-  margin: 10px 0;
-`;
+import { calculateTotalPrice } from "../../utils/helpers";
+import * as S from "./index.styles";
+import {
+  CartContainerDiv,
+  CartGameContainer,
+  TotalPriceContainer,
+} from "../commonStyles/cart";
+import { PrimaryButton } from "../commonStyles/buttons";
 
 export function CartContainer({ gameList = [], setGameList }) {
   function removeGameFromCart(gameId) {
@@ -39,29 +17,15 @@ export function CartContainer({ gameList = [], setGameList }) {
     setGameList(updatedGameList);
   }
 
-  function calculateTotalPrice() {
-    return gameList.reduce((total, game) => total + game.price, 0);
-  }
-
   return (
     <div>
       {gameList.length > 0 ? (
         <div className="d-flex flex-column">
           <CartContainerDiv className="d-flex flex-wrap justify-content-center p-3">
             {gameList.map((game) => (
-              <Col
-                xs={12}
-                sm={10}
-                className="d-flex m-2"
-                style={{ backgroundColor: "var(--color-secondary)" }}
-              >
-                <Col xs={2} className="m-2 d-flex">
-                  <img
-                    src={game.imageUrl}
-                    alt=""
-                    style={{ objectFit: "contain" }}
-                    className="w-100"
-                  />
+              <CartGameContainer xs={12} sm={10} className="d-flex m-2">
+                <Col xs={2} className="m-2 d-flex object-fit-contain">
+                  <img src={game.imageUrl} alt={game.name} className="w-100" />
                 </Col>
                 <Col
                   xs={6}
@@ -69,9 +33,9 @@ export function CartContainer({ gameList = [], setGameList }) {
                 >
                   <p>{game.name}</p>
                   <div className="d-flex justify-content-between">
-                    <p className="d-flex m-0">
+                    <p className="d-flex m-0 align-items-center">
                       {game.rating}
-                      <RatingIcon />
+                      <S.RatingIcon />
                     </p>
                     <p className="m-0">NOK {game.price}</p>
                   </div>
@@ -80,14 +44,14 @@ export function CartContainer({ gameList = [], setGameList }) {
                   xs={4}
                   className="d-flex justify-content-center align-items-center"
                 >
-                  <RemoveIcon onClick={() => removeGameFromCart(game._id)} />
+                  <S.RemoveIcon onClick={() => removeGameFromCart(game._id)} />
                 </Col>
-              </Col>
+              </CartGameContainer>
             ))}
           </CartContainerDiv>
           <TotalPriceContainer>
             <div>YOUR TOTAL IS: </div>
-            <div>NOK {calculateTotalPrice()}</div>
+            <div>NOK {calculateTotalPrice(gameList)}</div>
           </TotalPriceContainer>
           <Link to="/checkout" className="text-center my-3">
             <PrimaryButton>CHECKOUT</PrimaryButton>

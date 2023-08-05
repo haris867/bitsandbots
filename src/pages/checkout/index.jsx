@@ -4,6 +4,7 @@ import { Container, Col } from "react-bootstrap";
 import { load } from "../../hooks/storage";
 import useAuthentication from "../../hooks/useAuth";
 import { CheckoutCartContainer } from "../../components/checkoutCartContainer";
+import { Helmet } from "react-helmet";
 
 export default function Checkout() {
   useAuthentication();
@@ -21,6 +22,9 @@ export default function Checkout() {
       >
         <MainHeading className="fs-2 fw-bold mb-3">Checkout</MainHeading>
       </Col>
+      <Helmet>
+        <title>Bits & Bots | Checkout</title>
+      </Helmet>
       <Col xs={12} md={8} lg={6} className="mx-auto">
         <CheckoutCartContainer gameList={gameList} setGameList={setGameList} />
       </Col>

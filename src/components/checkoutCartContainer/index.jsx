@@ -1,6 +1,4 @@
-import styled from "styled-components";
 import { Col } from "react-bootstrap";
-import { TiStar } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { PrimaryButton } from "../commonStyles/buttons";
 import { remove } from "../../hooks/storage";
@@ -9,21 +7,12 @@ import { FormInput, FormLabel } from "../../components/commonStyles/inputs";
 import { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import useSendData from "../../hooks/api/sendData";
-
-const CartContainerDiv = styled.div`
-  background-color: var(--color-quaternary);
-  border-radius: 5px;
-  font-family: "Play", sans-serif;
-`;
-
-const TotalPriceContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-family: "Play", sans-serif;
-  font-weight: bold;
-  font-size: calc(1rem + 0.3vw);
-  margin: 10px 0;
-`;
+import { calculateTotalPrice } from "../../utils/helpers";
+import {
+  CartContainerDiv,
+  CartGameContainer,
+  TotalPriceContainer,
+} from "../commonStyles/cart";
 
 export function CheckoutCartContainer({ gameList = [], setGameList }) {
   const { sendData, isLoading, isError } = useSendData();
@@ -34,10 +23,6 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  function calculateTotalPrice() {
-    return gameList.reduce((total, game) => total + game.price, 0);
-  }
 
   const {
     register: registerCheckout,
@@ -50,7 +35,7 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
     handleShow();
   }
 
-  async function onOrderSubmit(data) {
+  async function onOrderSubmit() {
     if (!formData) return;
 
     const url =
@@ -65,7 +50,7 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
             address: formData.address,
             zip: formData.zip,
             city: formData.city,
-            totalAmount: calculateTotalPrice(),
+            totalAmount: calculateTotalPrice(gameList),
             gamesOrdered: gameList.map((game) => ({
               _type: "reference",
               _key: game._id,
@@ -103,21 +88,19 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
     <div>
       {gameList.length > 0 ? (
         <div className="d-flex flex-column">
-          <CartContainerDiv className="d-flex flex-wrap justify-content-center p-3">
+          <CartContainerDiv className="d-flex flex-wrap justify-content-center p-3 pb-2">
             {gameList.map((game) => (
-              <Col
+              <CartGameContainer
                 xs={12}
                 sm={10}
                 className="d-flex m-2"
-                style={{ backgroundColor: "var(--color-secondary)" }}
                 key={game._id}
               >
                 <Col xs={1} className="m-2 d-flex">
                   <img
                     src={game.imageUrl}
-                    alt=""
-                    style={{ objectFit: "contain" }}
-                    className="w-100"
+                    alt={game.name}
+                    className="w-100 object-fit-contain"
                   />
                 </Col>
                 <Col
@@ -129,16 +112,19 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
                     <p className="m-0">NOK {game.price}</p>
                   </div>
                 </Col>
-              </Col>
+              </CartGameContainer>
             ))}
             <div className="d-flex justify-content-between">
-              <div>Total items in cart: {gameList.length}</div>
+              <div>
+                Total items in cart:{" "}
+                <span className="fw-bold">{gameList.length}</span>
+              </div>
             </div>
           </CartContainerDiv>
           <TotalPriceContainer>
             <div className="d-flex justify-content-between">
               <div>YOUR TOTAL IS: </div>
-              <div>NOK {calculateTotalPrice()}</div>
+              <div>NOK {calculateTotalPrice(gameList)}</div>
             </div>
           </TotalPriceContainer>
           <Col xs={12} className="mx-auto">
@@ -171,8 +157,8 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
                 title="The name value must be minimum 5 characters long"
                 minLength={5}
               />
-              <div className="d-flex justify-content-between">
-                <Col xs={5}>
+              <div className="d-flex justify-content-between w-100">
+                <Col xs={6} className="pe-2">
                   <FormLabel className="mb-1" htmlFor="zip">
                     ZIP code
                   </FormLabel>
@@ -186,7 +172,7 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
                     minLength={4}
                   />
                 </Col>
-                <Col xs={5}>
+                <Col xs={6} className="ps-2">
                   <FormLabel className="mb-1" htmlFor="city">
                     City
                   </FormLabel>
@@ -215,8 +201,8 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
                 maxLength={16}
                 pattern="[0-9]{15,}"
               />
-              <div className="d-flex justify-content-between">
-                <Col xs={5}>
+              <div className="d-flex justify-content-between w-100">
+                <Col xs={6} className="pe-2">
                   <FormLabel className="mb-1" htmlFor="expiryDate">
                     Expiry date
                   </FormLabel>
@@ -230,7 +216,7 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
                     pattern="(0[1-9]|1[0-2])\/([0-9]{2})"
                   />
                 </Col>
-                <Col xs={5}>
+                <Col xs={6} className="ps-2">
                   <FormLabel className="mb-1" htmlFor="cvc">
                     CVC
                   </FormLabel>

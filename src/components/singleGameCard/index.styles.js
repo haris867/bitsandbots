@@ -1,6 +1,7 @@
+import styled from "styled-components";
 import { Card } from "react-bootstrap";
 import { TiStar } from "react-icons/ti";
-import styled from "styled-components";
+import { FaShoppingCart } from "react-icons/fa";
 
 export const SingleCard = styled(Card)`
   background-color: var(--color-secondary);
@@ -12,6 +13,7 @@ export const SingleCardBody = styled(Card.Body)`
   border: none;
   font-family: "Roboto Mono", sans-serif;
   border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 `;
 
 export const SingleCardText = styled(Card.Text)`
@@ -32,6 +34,7 @@ export const SingleCardTitle = styled(Card.Title)`
 export const SingleCardImage = styled(Card.Img)`
   border-radius: 0 !important;
   margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 `;
 
 export const SingleCardGenreTab = styled.div`
@@ -53,4 +56,9 @@ export const SingleCardGenreTab = styled.div`
 export const RatingIcon = styled(TiStar)`
   fill: var(--color-primary) !important;
   font-size: calc(1.4rem + 0.4vw) !important;
+`;
+
+export const CartIcon = styled(FaShoppingCart)`
+  color: var(--color-secondary);
+  font-size: 1em;
 `;

@@ -1,14 +1,7 @@
-import {
-  PrimaryButton,
-  SecondaryButton,
-} from "../../components/commonStyles/buttons";
 import React, { useState } from "react";
 import { Collapse } from "react-bootstrap";
-import { Container, Card, Col, Row } from "react-bootstrap";
-import styled from "styled-components";
-import { BsSearch } from "react-icons/bs";
+import { Container, Col, Row } from "react-bootstrap";
 import { MainHeading } from "../../components/commonStyles/headings";
-import { GameCard } from "../../components/commonStyles/cards";
 import CardsContainer from "../../components/cardsContainer";
 import useGetData from "../../hooks/api/getData";
 import { LoadingSpinner } from "../../components/commonStyles/loadingSpinner";
@@ -16,11 +9,8 @@ import GenreTabs from "../../components/genreTabs";
 import { SearchInput } from "../../components/commonStyles/inputs";
 import { fetchUrl } from "../../utils/constants";
 import useAuthentication from "../../hooks/useAuth";
-
-const SearchIcon = styled(BsSearch)`
-  font-size: calc(1.325rem + 0.9vw) !important;
-  cursor: pointer;
-`;
+import * as S from "./index.styles";
+import { Helmet } from "react-helmet";
 
 export default function Games() {
   useAuthentication();
@@ -29,7 +19,6 @@ export default function Games() {
 
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-
   const [searchGenres, setSearchGenres] = useState([]);
 
   function genreClick(e) {
@@ -83,12 +72,15 @@ export default function Games() {
         className="d-flex justify-content-between align-items-center mt-3 mb-0 mx-auto"
       >
         <MainHeading className="fs-2 fw-bold mb-0">Games</MainHeading>
-        <SearchIcon
+        <S.SearchIcon
           onClick={() => setOpen(!open)}
           aria-controls="search-form"
           aria-expanded={open}
         />
       </Col>
+      <Helmet>
+        <title>Bits & Bots | Games</title>
+      </Helmet>
       <Row>
         <Collapse in={open}>
           <Col id="search-form" md={10} className="p-0 mx-auto">

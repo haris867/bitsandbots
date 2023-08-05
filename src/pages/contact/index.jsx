@@ -1,8 +1,5 @@
-import {
-  MainHeading,
-  MainHeadingContainer,
-} from "../../components/commonStyles/headings";
-import { Container, Card, Col, Row } from "react-bootstrap";
+import { MainHeading } from "../../components/commonStyles/headings";
+import { Container, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { PrimaryButton } from "../../components/commonStyles/buttons";
 import {
@@ -13,12 +10,8 @@ import {
 import useAuthentication from "../../hooks/useAuth";
 import useSendData from "../../hooks/api/sendData";
 import { useState, useEffect } from "react";
-import styled from "styled-components";
 import { load } from "../../hooks/storage";
-
-const ContactFormContainer = styled(Container)`
-  font-family: "Play", sans-serif;
-`;
+import { Helmet } from "react-helmet";
 
 export default function Contact() {
   useAuthentication();
@@ -70,7 +63,7 @@ export default function Contact() {
   }, [isLoading, isError]);
 
   return (
-    <ContactFormContainer>
+    <Container>
       <Col
         xs={10}
         md={11}
@@ -78,6 +71,9 @@ export default function Contact() {
       >
         <MainHeading className="fs-2 fw-bold mb-0">Contact</MainHeading>
       </Col>
+      <Helmet>
+        <title>Bits & Bots | Contact</title>
+      </Helmet>
       <Col xs={10} md={8} lg={6} className="mx-auto">
         <div className="fs-6 fw-bold text-center">{contactFormMessage}</div>
         <form
@@ -110,6 +106,6 @@ export default function Contact() {
           </PrimaryButton>
         </form>
       </Col>
-    </ContactFormContainer>
+    </Container>
   );
 }

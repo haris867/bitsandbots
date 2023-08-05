@@ -1,65 +1,36 @@
-import styled from "styled-components";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
-const FooterContainer = styled.footer`
-  min-height: 120px;
-  max-height: 120px;
-  background-color: var(--color-primary);
-  color: var(--color-secondary);
-  padding: 0 20px;
-  font-family: "Play", sans-serif;
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-`;
-
-const FooterContent = styled.div`
-  display: flex;
-  justify-content: ${(props) =>
-    props.pathname === "/" ? "start" : "space-between"};
-  align-items: center;
-  height: 100% !important;
-`;
-const FooterNavList = styled.ul`
-  list-style-type: none;
-  color: red !important;
-`;
-
-const FooterLink = styled(NavLink)`
-  color: var(--color-secondary);
-  text-decoration: none;
-`;
+import * as S from "./index.styles";
 
 export default function Footer() {
   const { pathname } = useLocation();
 
   return (
-    <FooterContainer>
-      <FooterContent pathname={pathname} className="mt-4">
-        <div className="footer-copyright">Bits & Bots &copy;</div>
+    <S.FooterContainer>
+      <S.FooterContent className="mt-4">
+        <div className="footer__copyright">Bits & Bots &copy;</div>
 
-        <div className="footer-logo-container logo-container">
+        <div className="footer__logo-container logo-container">
           <Link to="/">
             <img src="/images/bits&bots-logo-icon.png" alt="Bits & Bots logo" />
           </Link>
         </div>
         {pathname !== "/" && (
-          <div className="footer-links">
-            <FooterNavList className="mb-0">
+          <div className="footer__links">
+            <S.FooterNavList className="mb-0">
               <li>
-                <FooterLink to="/games">Games</FooterLink>
+                <S.FooterLink to="/games">Games</S.FooterLink>
               </li>
               <li>
-                <FooterLink to="/about">About</FooterLink>
+                <S.FooterLink to="/about">About</S.FooterLink>
               </li>
               <li>
-                <FooterLink to="/contact">Contact</FooterLink>
+                <S.FooterLink to="/contact">Contact</S.FooterLink>
               </li>
-            </FooterNavList>
+            </S.FooterNavList>
           </div>
         )}
-      </FooterContent>
-    </FooterContainer>
+      </S.FooterContent>
+    </S.FooterContainer>
   );
 }

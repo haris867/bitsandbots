@@ -23,4 +23,5 @@ export const AboutCardImage = styled(Card.Img)`
   border-radius: 0 !important;
   margin-bottom: 20px;
   filter: brightness(0.4);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 `;

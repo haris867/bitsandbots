@@ -1,4 +1,4 @@
-import { SecondaryButton } from "../commonStyles/buttons";
+import { GenreButton, SecondaryButton } from "../commonStyles/buttons";
 
 export default function GenreTabs({
   genres = [],
@@ -9,16 +9,15 @@ export default function GenreTabs({
     <>
       <div className="d-flex flex-wrap mx-auto">
         {genres.map((genre) => (
-          <SecondaryButton
+          <GenreButton
             onClick={onGenreClick}
-            style={{ flex: "1 0 80px" }}
             className={`mx-2 mb-2 ${
               selectedGenres.includes(genre) ? "selected" : ""
             }`}
             key={genre._id}
           >
             {genre.genre}
-          </SecondaryButton>
+          </GenreButton>
         ))}
       </div>
     </>

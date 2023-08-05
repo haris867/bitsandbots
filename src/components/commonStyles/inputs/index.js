@@ -18,6 +18,7 @@ export const FormInput = styled.input`
     font-size: calc(0.8rem + 0.5vw) !important;
     font-weight: bold !important;
   }
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 `;
 export const FormTextarea = styled.textarea`
   height: calc(6.5rem + 1.7vw) !important;
@@ -30,6 +31,7 @@ export const FormTextarea = styled.textarea`
     font-size: calc(0.8rem + 0.5vw) !important;
     font-weight: bold !important;
   }
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 `;
 
 export const SearchInput = styled.input`
@@ -43,4 +45,5 @@ export const SearchInput = styled.input`
     font-size: calc(0.8rem + 0.5vw) !important;
     font-weight: bold !important;
   }
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 `;
