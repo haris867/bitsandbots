@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import Theme from "./styles/theme";
 import GlobalStyle from "./styles/GlobalStyles";
 import { BrowserRouter } from "react-router-dom";
-import ScrollToTop from "./components/scrollToTop";
+import { ScrollToTop } from "./utils/helpers";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
