@@ -11,18 +11,66 @@ import {
   FormTextarea,
 } from "../../components/commonStyles/inputs";
 import useAuthentication from "../../hooks/useAuth";
+import useSendData from "../../hooks/api/sendData";
+import { useState, useEffect } from "react";
+import { styled } from "styled-components";
+import { load } from "../../hooks/storage";
+
+const ContactFormContainer = styled(Container)`
+  font-family: "Play", sans-serif;
+`;
 
 export default function Contact() {
   useAuthentication();
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
-  function onContactSubmit(data) {
-    console.log(data);
+  const { sendData, isLoading, isError } = useSendData();
+
+  const loggedInUser = load("loggedInUser");
+
+  const loggedInUserData = JSON.parse(loggedInUser);
+
+  const [contactFormMessage, setContactFormMessage] = useState("");
+
+  async function onContactSubmit(contact) {
+    const url =
+      "https://qg8g236v.api.sanity.io/v2021-10-21/data/mutate/production";
+    const method = "POST";
+    const data = {
+      mutations: [
+        {
+          create: {
+            _type: "contact",
+            name: loggedInUserData.name,
+            email: loggedInUserData.email,
+            subject: contact.subject,
+            message: contact.message,
+          },
+        },
+      ],
+    };
+
+    const result = await sendData(data, url, method);
+
+    if (result.error && result.error.length > 0) {
+      setContactFormMessage(`${result.error}: ${result.message}`);
+    } else if (result) {
+      reset();
+      setContactFormMessage("Form submitted successfully!");
+    }
   }
 
+  useEffect(() => {
+    if (isLoading) {
+      setContactFormMessage("Submitting form...");
+    } else if (isError) {
+      setContactFormMessage("Something went wrong. Please try again later.");
+    }
+  }, [isLoading, isError]);
+
   return (
-    <Container>
+    <ContactFormContainer>
       <Col
         xs={10}
         md={11}
@@ -31,22 +79,11 @@ export default function Contact() {
         <MainHeading className="fs-2 fw-bold mb-0">Contact</MainHeading>
       </Col>
       <Col xs={10} md={8} lg={6} className="mx-auto">
+        <div className="fs-6 fw-bold text-center">{contactFormMessage}</div>
         <form
           className="d-flex flex-column align-items-center"
           onSubmit={handleSubmit(onContactSubmit)}
         >
-          <FormLabel className="mb-1" htmlFor="name">
-            Full name
-          </FormLabel>
-          <FormInput
-            className="mb-2"
-            type="text"
-            placeholder="Your full name"
-            {...register("name")}
-            required={true}
-            // pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-            title="The name value must be minimum 2 characters long"
-          />
           <FormLabel className="mb-1" htmlFor="subject">
             Subject
           </FormLabel>
@@ -73,6 +110,6 @@ export default function Contact() {
           </PrimaryButton>
         </form>
       </Col>
-    </Container>
+    </ContactFormContainer>
   );
 }

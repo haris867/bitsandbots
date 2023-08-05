@@ -20,7 +20,7 @@ export const FormInput = styled.input`
   }
 `;
 export const FormTextarea = styled.textarea`
-  height: calc(4.5rem + 1.7vw) !important;
+  height: calc(6.5rem + 1.7vw) !important;
   font-family: "Play", sans-serif;
   width: 100% !important;
   background: var(--color-secondary) !important;
