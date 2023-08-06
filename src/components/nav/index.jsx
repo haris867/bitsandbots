@@ -16,13 +16,14 @@ export default function Nav() {
     <>
       <div className="d-flex align-items-center gap-3">
         <Link to="/cart">
-          <S.CartIcon />
+          <S.CartIcon aria-label="Shopping Cart" />
         </Link>
         <S.IconButton
           onClick={() => setOpen(!open)}
           aria-controls="collapse-nav"
           aria-expanded={open}
           className="d-flex"
+          aria-label="Hamburger menu"
         >
           <S.MenuIcon className="dropdown-toggle" />
         </S.IconButton>

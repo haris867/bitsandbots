@@ -73,6 +73,7 @@ export default function Games() {
       >
         <MainHeading className="fs-2 fw-bold mb-0">Games</MainHeading>
         <S.SearchIcon
+          role="button"
           onClick={() => setOpen(!open)}
           aria-controls="search-form"
           aria-expanded={open}
