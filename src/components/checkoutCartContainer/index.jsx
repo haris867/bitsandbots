@@ -122,10 +122,8 @@ export function CheckoutCartContainer({ gameList = [], setGameList }) {
             </div>
           </CartContainerDiv>
           <TotalPriceContainer>
-            <div className="d-flex justify-content-between">
-              <div>YOUR TOTAL IS: </div>
-              <div>NOK {calculateTotalPrice(gameList)}</div>
-            </div>
+            <div>YOUR TOTAL IS: </div>
+            <div>NOK {calculateTotalPrice(gameList)}</div>
           </TotalPriceContainer>
           <Col xs={12} className="mx-auto">
             <div className="fs-6 fw-bold text-center">{orderFormMessage}</div>
