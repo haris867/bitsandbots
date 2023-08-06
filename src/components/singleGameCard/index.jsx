@@ -27,7 +27,7 @@ export default function SingleGameCard({ game = [] }) {
       <Row className="d-flex justify-content-center">
         <Col xs={8} sm={7} md={6} lg={4} xl={3} className=" mb-4">
           <S.SingleCard>
-            <S.SingleCardImage src={gameData.imageUrl} />
+            <S.SingleCardImage src={gameData.imageUrl} alt={gameData.name} />
           </S.SingleCard>
           <div className="d-flex justify-content-between">
             <S.SingleCardDetails className="d-flex fw-bold">
