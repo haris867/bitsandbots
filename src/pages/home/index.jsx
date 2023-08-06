@@ -28,6 +28,7 @@ export default function Home() {
         autoPlay
         loop
         muted
+        playsInline
         src={isMobile ? videoBgMobile : videoBgDesktop}
       />
       <AuthModal />
