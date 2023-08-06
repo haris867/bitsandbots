@@ -22,7 +22,10 @@ export default function About() {
           <S.AboutCard>
             <div className="d-flex align-items-center">
               <S.AboutCardTitle>About Us</S.AboutCardTitle>
-              <S.AboutCardImage src="/images/product-image.jpg" />
+              <S.AboutCardImage
+                src="/images/product-image.jpg"
+                alt="product-image"
+              />
             </div>
 
             <S.AboutCardText>
@@ -46,7 +49,10 @@ export default function About() {
           <S.AboutCard>
             <div className="d-flex align-items-center">
               <S.AboutCardTitle>Our mission</S.AboutCardTitle>
-              <S.AboutCardImage src="/images/product-image2.jpg" />
+              <S.AboutCardImage
+                src="/images/product-image2.jpg"
+                alt="product-image"
+              />
             </div>
             <S.AboutCardText>
               At Bits & Bots, our mission is simple. We aim to provide an
